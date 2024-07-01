@@ -18,7 +18,7 @@ let questions = [
   "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ",
   "What is the minimum crew size for the ISS? "
 ]
-let correctAnswers = ["Sally Ride", "true", "40", "Tracjectory", "3"];
+let correctAnswers = ["Sally Ride", "true", "40", "Trajectory", "3"];
 let candidateAnswers = [];
 
 
@@ -40,17 +40,36 @@ function askQuestion() {
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  if (candidateAnswer === correctAnswer) {
-    console.log("correct!");
-  } else {
-    console.log("Incorrect!");
+  //if (candidateAnswer === correctAnswer) {
+  // console.log("correct!");
+  // } else {
+  //console.log("Incorrect!");
+  //  }
+  for (let i = 0; i < questions.length; i++) {
+    console.log(`Your Answer: ${candidateAnswers[i]}`);
+
+    if (candidateAnswer[i] === correctAnswers[i]) {
+      console.log(`Correct Answers: ${correctAnswers[i]}`);
+    } else {
+      console.log(`Wrong! The correct answer is: ${correctAnswers[i]}`);
+    }
   }
 
 
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
+  //TODO 3.2 use this variable to calculate the candidates score.
 
+  let numberOfCorrectAnswers = 0;
+
+  for(let i = 0; i < correctAnswers.length; i++) {
+    if (correctAnswers[i].toLowerCase() === candidateAnswers[i].toLowerCase()) {
+      numberOfCorrectAnswers++;
+    }
+  }
+  let numberOfQuizQuestions = correctAnswers.length;
+  let grade = (numberOfCorrectAnswers / numberOfQuizQuestions) * 100;
 
   return grade;
+
 }
 
 function runProgram() {
