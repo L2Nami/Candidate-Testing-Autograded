@@ -32,8 +32,8 @@ function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
   // candidateAnswer = input.question(question);
   // return candidateAnswer;
-  for (let i = 0; i < question.length; i++) {
-    candidateAnswers.push(input.question(questions[i]));
+  for (let i = 0; i < questions.length; i++) {
+    candidateAnswers.push(input.question(`${i + 1} ${questions[i]}`));
   }
 }
 
@@ -46,10 +46,10 @@ function gradeQuiz(candidateAnswers) {
   //console.log("Incorrect!");
   //  }
   for (let i = 0; i < questions.length; i++) {
-    console.log(`Your Answer: ${candidateAnswers[i]}`);
+    console.log(`Your Answer: ${candidateAnswers[i].toLowerCase()}`);
 
     if (candidateAnswer[i] === correctAnswers[i]) {
-      console.log(`Correct Answers: ${correctAnswers[i]}`);
+      console.log(`Correct Answer: ${correctAnswers[i]}`);
     } else {
       console.log(`Wrong! The correct answer is: ${correctAnswers[i]}`);
     }
@@ -60,13 +60,16 @@ function gradeQuiz(candidateAnswers) {
 
   let numberOfCorrectAnswers = 0;
 
-  for(let i = 0; i < correctAnswers.length; i++) {
-    if (correctAnswers[i].toLowerCase() === candidateAnswers[i].toLowerCase()) {
-      numberOfCorrectAnswers++;
-    }
+
+  for (let i = 0; i < correctAnswers.length; i++) {
+    if (correctAnswers[i] === candidateAnswers[i]) {
+      numberOfCorrectAnswers++
+      
+    } 
   }
-  let numberOfQuizQuestions = correctAnswers.length;
-  let grade = (numberOfCorrectAnswers / numberOfQuizQuestions) * 100;
+  let grade = (numberOfCorrectAnswers / questions.length) * 100;
+  
+
 
   return grade;
 
@@ -75,8 +78,8 @@ function gradeQuiz(candidateAnswers) {
 function runProgram() {
   askForName();
   // TODO 1.1c: Greet candidate using their name //
-  console.log();
-  askQuestion();
+  console.log("Hello", `${candidateName}`, "!");
+  askQuestion(`${'What is your name ?'}`);
   gradeQuiz(this.candidateAnswers);
 }
 
