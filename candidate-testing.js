@@ -46,9 +46,9 @@ function gradeQuiz(candidateAnswers) {
   //console.log("Incorrect!");
   //  }
   for (let i = 0; i < questions.length; i++) {
-    console.log(`Your Answer: ${candidateAnswers[i].toLowerCase()}`);
+    console.log(`Your Answer: ${candidateAnswers[i]}`);
 
-    if (candidateAnswer[i] === correctAnswers[i]) {
+    if (candidateAnswers[i] === correctAnswers[i]) {
       console.log(`Correct Answer: ${correctAnswers[i]}`);
     } else {
       console.log(`Wrong! The correct answer is: ${correctAnswers[i]}`);
@@ -69,6 +69,7 @@ function gradeQuiz(candidateAnswers) {
   }
   let grade = (numberOfCorrectAnswers / questions.length) * 100;
   
+  console.log(grade);
 
 
   return grade;
